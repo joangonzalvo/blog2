@@ -81,7 +81,7 @@ class User implements UserInterface
     }
 
     public function getRoles() {
-        return array($this->role);
+        return array($this->role_id);
     }
 
     public function getSalt() {
