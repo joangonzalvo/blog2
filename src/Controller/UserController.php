@@ -54,12 +54,15 @@ class UserController extends Controller
     public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
         $user = new User();
+        //No em deixa crear el usuari si no establim el lastlogin, per aixó faig el següent per establir la data de creació
         $s=date("Y-m-d H:i:s");
         $date = date_create_from_format('Y-m-d H:i:s', $s);
         $date->getTimestamp();
         
         $user->setLastlogin($date);
-        $user->setRole('user');
+        
+        //rol
+        //$user->setRole('user');
         
         //creating the form
         $form = $this->createForm(RegisterType::class, $user);
