@@ -27,13 +27,7 @@ class Role
      *@ORM\Column(type="string",length=45)
      */
     private $description;
-    /**
-     *@ORM\OneToMany(targetEntity= "App\Entity\User",mappedBy="role")
-     */
-    private $users;
-    public function __construct() {
-        $this->users=new ArrayCollection();
-    }
+    
     public function getUsers(){
         return $this->users;
     }

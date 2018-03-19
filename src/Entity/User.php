@@ -37,16 +37,15 @@ class User implements UserInterface
      */
     private $lastlogin;
     /**
-     * @ORM\ManyToOne(targetEntity= "App\Entity\Role",inversedBy="users")
-     * @ORM\JoinColumn(nullable=true)
+     *@ORM\Column(type="string",length=64)
      */
-    private $role_id;
+    private $role;
     
     function getRole() {
-        return $this->role_id;
+        return $this->role;
     }
-    function setRole(Role $role_id){
-        $this->role=$role_id;
+    function setRole($role){
+        $this->role=$role;
     }
 
     
@@ -81,7 +80,7 @@ class User implements UserInterface
     }
 
     public function getRoles() {
-        return array($this->role_id);
+        return array($this->role);
     }
 
     public function getSalt() {

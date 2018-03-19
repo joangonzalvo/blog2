@@ -61,7 +61,7 @@ class UserController extends Controller
         $user->setLastlogin($date);
         
         //rol
-        //$user->setRole('user');
+        $user->setRole('ROLE_USER');
         
         //creating the form
         $form = $this->createForm(RegisterType::class, $user);
