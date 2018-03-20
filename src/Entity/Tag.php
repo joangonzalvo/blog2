@@ -31,5 +31,27 @@ class Tag
     function __construct() {
         $this->posts=new ArrayCollection();
     }
+    
+    function getTagname() {
+        return $this->tagname;
+    }
+
+    function setTagname($tagname) {
+        $this->tagname = $tagname;
+    }
+
+    function getPosts() {
+        return $this->posts;
+    }
+
+    function setPosts($posts) {
+        $this->posts = $posts;
+    }
+
+    function getId() {
+        return $this->id;
+    }
+
+
 
 }

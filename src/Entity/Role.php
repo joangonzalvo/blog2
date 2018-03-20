@@ -43,10 +43,6 @@ class Role
         return $this->description;
     }
 
-    function setId($id) {
-        $this->id = $id;
-    }
-
     function setRol($rol) {
         $this->rol = $rol;
     }

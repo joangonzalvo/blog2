@@ -51,5 +51,28 @@ class Comment
         $this->role=post;
     }
 
+   
+    function getComment() {
+        return $this->comment;
+    }
+
+    function getCreate_date() {
+        return $this->create_date;
+    }
+
+
+    function setComment($comment) {
+        $this->comment = $comment;
+    }
+
+    function setCreate_date($create_date) {
+        $this->create_date = $create_date;
+    }
+
+    function getId() {
+        return $this->id;
+    }
+
+
     
 }
