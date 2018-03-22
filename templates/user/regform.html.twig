@@ -6,6 +6,10 @@
 {% endblock %}
 
 {% block body %}
+    
+{% if app.user %}
+    <h1>Can't register if user is loged in.</h1>
+{% else %}
     <div class="col-lg-4 box-form">
         <h2>Sign up, please</h2>
         {{ form_start(form)}}
@@ -13,6 +17,7 @@
            {{form_end(form) }}           
        {{form_errors(form)}}        
     </div>
+{% endif %}
 {% endblock %}
 
 {% block form_errors %}
