@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/estilo.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-tagsinput.css') }}"/>
+{% endblock %}
+
+{% block body %}    
+    <div class="col-lg-6 box-form">
+    <h1>New post</h1>
+            {{ form_start(form)}}
+        {{form_widget(form) }}
+           {{form_end(form) }}   
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{asset("js/bootstrap-tagsinput.min.js")}}"></script>
+    {%endblock%}

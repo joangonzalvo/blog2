@@ -5,3 +5,7 @@ login:
 logout:
     path: /logout
     controller: App\Controller\UserController::logout
+newpost:
+    path: /newpost
+    controller: App\Controller\PostController::newPost
+

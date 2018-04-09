@@ -16,6 +16,7 @@
         "symfony/twig-bundle": "^3.4",
         "symfony/validator": "^3.4",
         "symfony/yaml": "^3.4",
+        "tinymce/tinymce": "^4.7",
         "twbs/bootstrap": "^3.3"
     },
     "require-dev": {

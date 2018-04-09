@@ -30,12 +30,7 @@ class Post
     /**
      *@ORM\Column(type="datetime")
      */
-    private $create_date;
-    /**
-     *@ORM\Column(type="datetime")
-     */
-    private $modify_date;
-    
+    private $create_date;   
     
     
     /**
@@ -52,7 +47,7 @@ class Post
 
     /**
      * Many Posts have Many Tags.
-     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="posts")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="posts", cascade={"persist"})
      * @ORM\JoinTable(name="post_tags")
      */
     private $tags;
@@ -75,13 +70,10 @@ class Post
         return $this->content;
     }
 
-    function getCreate_date() {
+    function getCreatedate() {
         return $this->create_date;
     }
 
-    function getModify_date() {
-        return $this->modify_date;
-    }
 
     function getTags() {
         return $this->tags;
@@ -95,13 +87,10 @@ class Post
         $this->content = $content;
     }
 
-    function setCreate_date($create_date) {
+    function setCreatedate($create_date) {
         $this->create_date = $create_date;
     }
 
-    function setModify_date($modify_date) {
-        $this->modify_date = $modify_date;
-    }
 
     function setTags($tags) {
         $this->tags = $tags;
