@@ -12,8 +12,18 @@
         </div>
             {% if app.user %}
         <div class="jumbotron">
-            <h3>Posts</h3>
-
+            <h3>{{ app.user.username }} posts</h3>
+            <ul>
+                {% for post in posts %}
+                    {% if post.user_id == app.user %}
+                        <p><a href="#">{{ post.title }}</a> - {{ post.create_date|date('d-m-Y') }}
+                            <br>
+                            <?= substr( {{ post.content }},0,15 )?>
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            
         </div>
         {% endif %}
     </div>

@@ -40,7 +40,7 @@ class PostType extends AbstractType
                         ]
             ])
             ->add('content', null, [
-                'label' => 'Contents',
+                'label' => 'Content',
                 'required' => false,
                 'attr'=>[ 
                                 'class'=>'form-control'

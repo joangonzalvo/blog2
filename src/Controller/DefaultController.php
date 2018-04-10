@@ -18,6 +18,10 @@ class DefaultController extends Controller{
      * @Route("/",name="homeaction")
      */
     public function indexAction($name='demo'){
-        return $this->render('default/index.html.twig',['name'=> $name]);
+        $posts = $this->getDoctrine()->getRepository('App:Post')->findAll();
+        
+        return $this->render('default/index.html.twig',[
+            'name'=> $name,
+            'posts' => $posts]);
     }
 }

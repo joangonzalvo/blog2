@@ -8,4 +8,17 @@ logout:
 newpost:
     path: /newpost
     controller: App\Controller\PostController::newPost
+#Api Routes
+api_new_user:
+    path: /api/user
+    controller: App\Controller\Api\UserController::newUSer
+    methods: [POST]
+
+api_list_user:
+    path: /api/user/{username}
+    controller: App\Controller\Api\UserController::listUser
+    methods: [GET]
+    defaults:
+        username: null
+
 

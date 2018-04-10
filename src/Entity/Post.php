@@ -38,7 +38,7 @@ class Post
     * @ORM\JoinColumn(nullable=true)
     */
     private $user;
-    public function getUser(){
+    public function getUser_id(){
     return $this->user;
     }
     function setUser($user) {
@@ -70,7 +70,7 @@ class Post
         return $this->content;
     }
 
-    function getCreatedate() {
+    function getCreate_date() {
         return $this->create_date;
     }
 
