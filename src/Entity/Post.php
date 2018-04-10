@@ -73,6 +73,9 @@ class Post
     function getCreate_date() {
         return $this->create_date;
     }
+    function getCreatedate() {
+        return $this->create_date;
+    }
 
 
     function getTags() {

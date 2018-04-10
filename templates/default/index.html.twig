@@ -18,7 +18,7 @@
                     {% if post.user_id == app.user %}
                         <p><a href="#">{{ post.title }}</a> - {{ post.create_date|date('d-m-Y') }}
                             <br>
-                            <?= substr( {{ post.content }},0,15 )?>
+                            <i>{{ post.content|raw[:15] ~ '...' }}</i>
                         </p>
                     {% endif %}
                 {% endfor %}
