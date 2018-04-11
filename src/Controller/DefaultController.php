@@ -19,9 +19,11 @@ class DefaultController extends Controller{
      */
     public function indexAction($name='demo'){
         $posts = $this->getDoctrine()->getRepository('App:Post')->findAll();
+        $users = $this->getDoctrine()->getRepository('App:User')->findAll();
         
         return $this->render('default/index.html.twig',[
             'name'=> $name,
-            'posts' => $posts]);
+            'posts' => $posts,
+            'users' => $users]);
     }
 }

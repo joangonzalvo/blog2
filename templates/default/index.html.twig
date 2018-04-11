@@ -23,9 +23,44 @@
                     {% endif %}
                 {% endfor %}
             </ul>
+            <h3>Other posts</h3>
+            <ul>
+                {% for post in posts %}
+                    {% if post.user_id != app.user %}
+                        <p><a href="#">{{ post.title }}</a> - {{ post.create_date|date('d-m-Y') }} - 
+                            {% for user in users %}
+                                {% if post.user_id == user %}
+                                    {{ user.username }}
+                                {% endif %}
+                            {% endfor %}
+                            <br>
+                            <i>{{ post.content|raw[:15] ~ '...' }}</i>
+                        </p>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+            
             
         </div>
+        {% else %}
+         <div class="jumbotron">
+        <h3>All posts</h3>
+        <ul>
+                {% for post in posts %}
+                    
+                        <p><a href="#">{{ post.title }}</a> - {{ post.create_date|date('d-m-Y') }} - 
+                            {% for user in users %}
+                                {% if post.user_id == user %}
+                                    {{ user.username }}
+                                {% endif %}
+                            {% endfor %}
+                            <br>
+                            <i>{{ post.content|raw[:15] ~ '...' }}</i>
+                        </p>
+                    
+                {% endfor %}
+            </ul>
         {% endif %}
     </div>
-    
+    </div>
 {% endblock %}
