@@ -42,5 +42,17 @@ class PostController extends Controller
             'form' => $form->createView()            
         ));
     }
+    /**
+     * @Route("/post/{thispost}",name="post")
+     */
+    public function indexAction($thispost){
+        $posts = $this->getDoctrine()->getRepository('App:Post')->findAll();
+        $users = $this->getDoctrine()->getRepository('App:User')->findAll();
+        
+        return $this->render('post/thispost.html.twig',[
+            'thispost'=> $thispost,
+            'posts' => $posts,
+            'users' => $users]);
+    }
 
 }

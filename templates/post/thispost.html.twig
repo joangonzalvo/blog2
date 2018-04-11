@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/css/estilo.css') }}"/>
+{% endblock %}
+
+{% block body %}    
+    <h1>Posts!</h1>
+    
+    {% for post in posts %}
+        {% if post.id == thispost %}
+            {{ thispost }}
+        {% else %}
+            <!-- /.CREAR UNA VARIABLE DE BANDERA -->
+            <h1>Post not found in archive.</h1>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

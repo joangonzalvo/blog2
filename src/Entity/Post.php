@@ -103,6 +103,10 @@ class Post
     $this->tags = new ArrayCollection();
     $this->comments=new ArrayCollection();
     }
+    function getId() {
+        return $this->id;
+    }
+
 
 
 }
