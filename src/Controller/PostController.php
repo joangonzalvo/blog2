@@ -29,6 +29,8 @@ class PostController extends Controller
        $user=$this->getUser();
        $post->setUser($user);
        $form = $this->createForm(PostType::class, $post); 
+       
+        //formulario
        $form->handleRequest($request);
        if ($form->isSubmitted() && $form->isValid()) {
            $post=$form->getData();
@@ -45,13 +47,15 @@ class PostController extends Controller
     /**
      * @Route("/post/{thispost}",name="post")
      */
-    public function indexAction($thispost){
+    public function thisPost($thispost){
         $posts = $this->getDoctrine()->getRepository('App:Post')->findAll();
         $users = $this->getDoctrine()->getRepository('App:User')->findAll();
+        $comments = $this->getDoctrine()->getRepository('App:Comment')->findAll();
         
         return $this->render('post/thispost.html.twig',[
             'thispost'=> $thispost,
             'posts' => $posts,
+            'comments' => $comments,
             'users' => $users]);
     }
 

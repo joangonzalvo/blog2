@@ -32,11 +32,11 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $user;
-    function getUser():Role{
-        return $this->role;
+    function getUser_id(){
+        return $this->user;
     }
     function setUser(User $user){
-        $this->role=$user;
+        $this->user=$user;
     }
     
     /**
@@ -44,11 +44,11 @@ class Comment
      * @ORM\JoinColumn(nullable=false)
      */
     private $post;
-    function getPost():Role{
+    function getPost_id(){
         return $this->post;
     }
     function setPost(Post $post){
-        $this->role=post;
+        $this->post=$post;
     }
 
    
