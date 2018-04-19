@@ -11,6 +11,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use App\Entity\User;
 use App\Entity\Post;
 use App\Form\PostType;
+use App\Form\RegisterType;
 
 
 class AdminController extends Controller
@@ -68,6 +69,38 @@ class AdminController extends Controller
             'user'=>$user,   
             'form' => $form->createView()            
         ));
+    }
+    /**
+     * @Route("/adminpanel/{thisuser}/edituser",name="adminedituser")
+     */
+    public function editUsers(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    {
+            //this user
+           $stringid = $request->attributes->get('thisuser');
+           $userid = (int)$stringid;
+           $repository = $this->getDoctrine()->getRepository(User::class);
+           $user = $repository->find($userid);
+        
+        //creating the form
+        $form = $this->createForm(RegisterType::class, $user);
+        
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // encoding password, first we get password in plaintext and then
+    // we encode it.
+            $password=$passwordEncoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();            
+            return $this->redirectToRoute('adminusers');
+        }
+        //rendering form
+        return $this->render('admin/edituser.html.twig', array(
+            'form' => $form->createView(),
+        ));
+         
     }
     
 }
