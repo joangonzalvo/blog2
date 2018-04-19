@@ -16,6 +16,11 @@
                     <li class="active"><a href="/">Home</a></li>
                     {% if app.user %}
                     <li><a href="{{path("newpost")}}">New Post</a></li>
+                    {% if app.user %}
+                        {% if app.user.role == "ROLE_ADMIN" %}
+                            <li><a href="{{path("adminpanel")}}">Admin panel</a></li>
+                        {% endif %}    
+                    {% endif %} 
                     <li><a href="{{path("logout")}}">Logout</a></li>
                         
                     {% else %}
