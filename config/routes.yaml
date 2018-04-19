@@ -8,6 +8,9 @@ logout:
 newpost:
     path: /newpost
     controller: App\Controller\PostController::newPost
+newcomment:
+    path:       /post/{thispost}/addcomment
+    controller: App\Controller\CommentController::newComment
 #Api Routes
 api_new_user:
     path: /api/user

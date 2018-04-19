@@ -5,10 +5,9 @@
     use Symfony\Component\Form\AbstractType;
     use Symfony\Component\Form\FormBuilderInterface;
     use Symfony\Component\OptionsResolver\OptionsResolver;
-    use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
-    use App\Form\Type\TagsInputType;
+  
     use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-    use App\Entity\Post;
+
     use App\Entity\Comment;
     
         /**
@@ -33,6 +32,7 @@ class CommentType extends AbstractType
                                 'class'=>'form-control'
                         ]
             ])
+                
                 ->add('Signup', SubmitType::class,
                             ['label'=>'Save',
                                 'attr'=>[ 
@@ -46,7 +46,7 @@ class CommentType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Post::class,
+            'data_class' => Comment::class,
         ]);
     }
 }

@@ -45,7 +45,7 @@
                 {% endif %}
             {% endfor %}
             {% if app.user %}
-                <p><a href="#">Add comment</a></p>
+                <p><a href="/post/{{ post.id }}/addcomment">Add comment</a></p>
             {% endif %}
             {% endif %}
         {% endfor %}
