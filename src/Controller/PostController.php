@@ -80,7 +80,7 @@ class PostController extends Controller
            $em->flush();
            return $this->redirectToRoute('homeaction');
        }
-           return $this->render('post/newpost.html.twig', array(
+           return $this->render('post/editpost.html.twig', array(
             'user'=>$user,
             'post'=>$post,
             'form' => $form->createView()            
