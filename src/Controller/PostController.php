@@ -58,5 +58,33 @@ class PostController extends Controller
             'comments' => $comments,
             'users' => $users]);
     }
+    /**
+     * @Route("/post/{thispost}/editpost", name="editpost")
+     */
+    public function editPosts(Request $request){
+        
+       //this post
+       $stringid = $request->attributes->get('thispost');
+       $postid = (int)$stringid;
+       $repository = $this->getDoctrine()->getRepository(Post::class);
+       $post = $repository->find($postid);
+       $user = $this->getUser();
+       $form = $this->createForm(PostType::class, $post); 
+       
+        //formulario
+       $form->handleRequest($request);
+       if ($form->isSubmitted() && $form->isValid()) {
+           $post=$form->getData();
+           $em = $this->getDoctrine()->getManager();
+           $em->persist($post);
+           $em->flush();
+           return $this->redirectToRoute('homeaction');
+       }
+           return $this->render('post/newpost.html.twig', array(
+            'user'=>$user,
+            'post'=>$post,
+            'form' => $form->createView()            
+        ));
+    }
 
 }

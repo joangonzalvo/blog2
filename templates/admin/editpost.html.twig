@@ -5,7 +5,9 @@
     <link rel="stylesheet" href="{{ asset('assets/css/estilo.css') }}"/>
 {% endblock %}
 
-{% block body %}    
+{% block body %}
+    {% if app.user %}
+            {% if app.user.role == "ROLE_ADMIN" %}    
     <div class="col-lg-6 box-form">
     <h1>Edit post</h1>
             {{form_start(form)}}
@@ -15,6 +17,8 @@
                 {{ form_row(form.tags) }}
             {{ form_end(form) }}
     </div>
+            {% endif %}
+        {% endif %}
 {% endblock %}
 {% block javascripts %}
     {{parent()}}
