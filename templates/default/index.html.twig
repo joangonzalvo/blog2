@@ -16,8 +16,6 @@
                 {% for post in posts %}
                     {% if post.user_id == app.user %}
                         <p><a href="/post/{{ post.id }}">{{ post.title }}</a> - {{ post.create_date|date('d-m-Y') }} - <a href="/post/{{ post.id }}/editpost">Edit</a>
-                            <br>
-                            <i>{{ post.content|raw[:15] ~ '...' }}</i>
                         </p>
                     {% endif %}
                 {% endfor %}
@@ -32,8 +30,6 @@
                                     {{ user.username }}
                                 {% endif %}
                             {% endfor %}
-                            <br>
-                            <i>{{ post.content|raw[:15] ~ '...' }}</i>
                         </p>
                     {% endif %}
                 {% endfor %}
@@ -53,8 +49,6 @@
                                     {{ user.username }}
                                 {% endif %}
                             {% endfor %}
-                            <br>
-                            <i>{{ post.content|raw[:15] ~ '...' }}</i>
                         </p>
                     
                 {% endfor %}
