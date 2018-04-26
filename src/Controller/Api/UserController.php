@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use App\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * UserController API
@@ -44,5 +46,42 @@ class UserController extends Controller {
             
             
         }
+    }
+    public function newUSer(Request $request, UserPasswordEncoderInterface $passwordEncoder){
+        //Request gets the paramters from url
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $password = $request->get('password');
+        $error="";
+        if(empty($name) || empty($email) || empty($password))
+        {
+          return $error="NULL VALUES ARE NOT ALLOWED"+ Response::HTTP_NOT_ACCEPTABLE; 
+        }else{
+            //If it gets the values of name, email and pass will create the new user:
+            $user = new User();
+            $s=date("Y-m-d H:i:s");
+            $date = date_create_from_format('Y-m-d H:i:s', $s);
+            $date->getTimestamp();
+
+            $user->setLastlogin($date);
+            $user->setRole('ROLE_USER');
+            $password=$passwordEncoder->encodePassword($user, $password);
+            $user->setPassword($password);
+            $user->setUsername($name);
+            $user->setEmail($email);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+            
+            //User registered
+            
+            $thisuser=$this->getDoctrine()->getRepository(User::class)
+                ->findOneBy(['username'=>$name]);
+        
+        
+            return new JsonResponse($this->serialize($thisuser));
+            
+        }
+        
     }
 }
