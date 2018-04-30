@@ -23,5 +23,17 @@ api_list_user:
     methods: [GET]
     defaults:
         username: null
+api_edit_user:
+    path: /api/user/{id}
+    controller: App\Controller\Api\UserController::editUser
+    methods: [PUT]
+    defaults:
+        username: null
+api_delete_user:
+    path: /api/user/{id}
+    controller: App\Controller\Api\UserController::deleteUser
+    methods: [DELETE]
+    defaults:
+        username: null
 
 

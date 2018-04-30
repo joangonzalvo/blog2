@@ -4,10 +4,10 @@ namespace App\Controller\Api;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use App\Entity\User;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\User;
 
 /**
  * UserController API
@@ -30,6 +30,7 @@ class UserController extends Controller {
         if ($username){
         $user=$this->getDoctrine()->getRepository(User::class)
                 ->findOneBy(['username'=>$username]);
+        
         
         
         return new JsonResponse($this->serialize($user));
@@ -84,4 +85,58 @@ class UserController extends Controller {
         }
         
     }
+    
+    public function editUser($id,Request $request)
+    { 
+        $error="";
+        $flag=0;
+        
+        $name = $request->get('name');
+        $email = $request->get('email');
+        $password = $request->get('password');
+        $manager = $this->getDoctrine()->getManager();
+        $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+        
+        if (empty($user)) {
+            return $error="USER NOT FOUND"+ Response::HTTP_NOT_ACCEPTABLE; 
+          }else{
+              if(!empty($name)){
+                  $flag=1;
+                  $user->setUsername($name);
+              }
+              if(!empty($password)){
+                  $flag=1;
+                  $user->setPassword($password);
+              }
+              if(!empty($email)){
+                  $flag=1;
+                  $user->setEmail($email);
+              }
+              
+          }
+           if($flag == 0){
+               return $error="Not any values to edit";
+           }else{
+               $manager->flush();
+               return $error="Values edited";
+           }
+
+        
+        }
+        
+        public function deleteUser($id){
+            $manager = $this->getDoctrine()->getManager();
+            $user = $this->getDoctrine()->getRepository(User::class)->find($id);
+            
+            if (empty($user)) {
+            return $error="USER NOT FOUND"+ Response::HTTP_NOT_ACCEPTABLE; 
+          }
+          else{
+              $manager->remove($user);
+              $manager->flush();
+              return $error="User deleted";
+          }
+            
+        }
+    
 }
